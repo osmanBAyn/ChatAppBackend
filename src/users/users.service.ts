@@ -1,6 +1,6 @@
 import {Injectable} from '@nestjs/common';
 import { DatabaseService } from 'src/database/database.service';
-import { CreateUserDto } from './dto/createUser..dto';
+import { CreateUserDto } from './dto/createUser.dto';
 import { UpdateUserDto } from './dto/updateUser.dto';
 import * as bcrypt from 'bcrypt';
 const saltRounds = 12;
@@ -14,6 +14,13 @@ export class UsersService {
         return this.databaseService.user.findUnique({
             where:{
                 id
+            }
+        })
+    }
+    async findOneByEmail(email : string){
+        return this.databaseService.user.findUnique({
+            where:{
+                email
             }
         })
     }
